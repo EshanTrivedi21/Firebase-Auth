@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "fir-practise-709b2",
-    ".firebaserc": "fir-practise-709b2"
+    "default": "fir-auth-a92e6",
+    ".firebaserc": "fir-auth-a92e6"
   },
   "targets": {},
   "etags": {}
