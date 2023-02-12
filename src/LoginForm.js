@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Grid, Button, TextField } from "@mui/material";
 import { Theme } from "./assets/theme";
+import rickroll from "./assets/rickroll.gif";
 import styled from "@mui/material/styles/styled";
 import FirebaseAuth from "./FirebaseAuth";
 
@@ -68,79 +69,103 @@ const LoginForm = ({ existingUser }) => {
               {existingUser ? (
                 <>
                   <h2 style={{ textAlign: "center" }}>
-                    Welcome {existingUser.email}
+                    Welcome 
                   </h2>
-                  <Button
-                    variant="contained"
-                    onClick={handleLogout}
-                    disableRipple
-                    sx={{
-                      color: "#F7CACA",
-                      backgroundColor: "#001122",
-                      "&.MuiButtonBase-root:hover": {
-                        bgcolor: "#001122",
-                      },
-                    }}
+                  <h3 style={{ textAlign: "center", fontSize: 20 }}>
+                    {existingUser.email}
+                  </h3>
+                  <div style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}>
+                    <img src={rickroll} style={{
+                      width: "17.5rem",
+                      height: "auto",
+                      marginTop: "3rem",
+                    }}/>
+                  </div>
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignContent="center"
+                    columnSpacing={1}
+                    sx={{ marginTop: 5 }}
                   >
-                    Logout
-                  </Button>
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        onClick={handleLogout}
+                        disableRipple
+                        sx={{
+                          px: 3,
+                          fontSize: 17,
+                          color: "#F7CACA",
+                          backgroundColor: "#001122",
+                          "&.MuiButtonBase-root:hover": {
+                            bgcolor: "#001122",
+                          },
+                        }}
+                      >
+                        Log Out
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </>
               ) : (
                 <>
-                  <h2 style={{ textAlign: "center" }}>Login</h2>
-                  <form onSubmit={handleSubmit}>
-                    <CssTextField
-                      type="email"
-                      id="Email"
-                      label="Email"
-                      placeholder="Email"
-                      variant="outlined"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      fullWidth
-                      sx={{ mt: 5 }}
-                    />
-                    <CssTextField
-                      type="password"
-                      id="Password"
-                      label="Password"
-                      placeholder="Password"
-                      variant="outlined"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                      fullWidth
-                      sx={{ mt: 3 }}
-                    />
-                    <Grid
-                      container
-                      direction="row"
-                      justifyContent="flex-end"
-                      alignContent="center"
-                      columnSpacing={1}
-                      sx={{ marginTop: 5 }}
-                    >
-                      <Grid item>
-                        <Button
-                          variant="contained"
-                          onClick={handleLogout}
-                          disableRipple
-                          sx={{
-                            px: 3,
-                            fontSize: 17,
-                            color: "#F7CACA",
-                            backgroundColor: "#001122",
-                            "&.MuiButtonBase-root:hover": {
-                              bgcolor: "#001122",
-                            },
-                          }}
-                        >
-                          Login
-                        </Button>
-                      </Grid>
+                  <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+                  <CssTextField
+                    type="email"
+                    id="Email"
+                    label="Email"
+                    placeholder="Email"
+                    variant="outlined"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    fullWidth
+                    sx={{ mt: 5 }}
+                  />
+                  <CssTextField
+                    type="password"
+                    id="Password"
+                    label="Password"
+                    placeholder="Password"
+                    variant="outlined"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    fullWidth
+                    sx={{ mt: 3 }}
+                  />
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignContent="center"
+                    columnSpacing={1}
+                    sx={{ marginTop: 5 }}
+                  >
+                    <Grid item>
+                      <Button
+                        variant="contained"
+                        onClick={handleSubmit}
+                        disableRipple
+                        sx={{
+                          px: 3,
+                          fontSize: 17,
+                          color: "#F7CACA",
+                          backgroundColor: "#001122",
+                          "&.MuiButtonBase-root:hover": {
+                            bgcolor: "#001122",
+                          },
+                        }}
+                      >
+                        Sign Up
+                      </Button>
                     </Grid>
-                  </form>
+                  </Grid>
                 </>
               )}
             </Box>
