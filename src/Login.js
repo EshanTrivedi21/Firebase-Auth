@@ -175,6 +175,7 @@ const Login = ({ existingUser }) => {
                     <Grid item>
                       <Button
                         variant="contained"
+                        onClick={handleLoginWithGoogle}
                         disableRipple
                         sx={{
                           textDecoration: "none",
@@ -190,6 +191,7 @@ const Login = ({ existingUser }) => {
                       >
                         <img
                           src="https://img.icons8.com/color/48/null/google-logo.png"
+                          alt=""
                           style={{
                             width: "1.85rem",
                           }}
