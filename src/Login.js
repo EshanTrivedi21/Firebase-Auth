@@ -239,7 +239,7 @@ const Login = ({ existingUser }) => {
                           },
                         }}
                       >
-                        Sign Up
+                        Log In
                       </Button>
                     </Grid>
                   </Grid>
