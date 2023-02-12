@@ -1,10 +1,15 @@
-import React from 'react';
 import './App.css';
+import LoginForm from './LoginForm';
+import React, { useState } from 'react';
+import FirebaseAuth from './FirebaseAuth';
 
 function App() {
+
+  const [user, setUser] = useState(null);
+  FirebaseAuth.subscribeToAuthChanges(setUser);
   return (
     <>
-      <h1>React App</h1>
+      <LoginForm existingUser={user} />
     </>
   );
 }
