@@ -49,6 +49,27 @@ const Login = ({ existingUser }) => {
     FirebaseAuth.logoutUser();
   }
 
+  async function handleSendResetPasswordEmail(e) {
+    if (!email) {
+      alert("Please enter your email address.");
+      return;
+    }
+    try {
+      await FirebaseAuth.sendResetPasswordEmail(email);
+      alert("Password reset email sent.");
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  async function handleLoginWithGoogle(e) {
+    try {
+      await FirebaseAuth.loginWithGoogle();
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <>
       <Theme>
@@ -68,21 +89,25 @@ const Login = ({ existingUser }) => {
             >
               {existingUser ? (
                 <>
-                  <h2 style={{ textAlign: "center" }}>
-                    Welcome 
-                  </h2>
+                  <h2 style={{ textAlign: "center" }}>Welcome</h2>
                   <h3 style={{ textAlign: "center", fontSize: 20 }}>
                     {existingUser.email}
                   </h3>
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "center",
-                  }}>
-                    <img src={rickroll} alt="" style={{
-                      width: "17.5rem",
-                      height: "auto",
-                      marginTop: "3rem",
-                    }}/>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={rickroll}
+                      alt=""
+                      style={{
+                        width: "17.5rem",
+                        height: "auto",
+                        marginTop: "3rem",
+                      }}
+                    />
                   </div>
                   <Grid
                     container
@@ -114,7 +139,7 @@ const Login = ({ existingUser }) => {
                 </>
               ) : (
                 <>
-                  <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+                  <h2 style={{ textAlign: "center" }}>Log In</h2>
                   <CssTextField
                     type="email"
                     id="Email"
@@ -150,6 +175,28 @@ const Login = ({ existingUser }) => {
                     <Grid item>
                       <Button
                         variant="contained"
+                        disableRipple
+                        sx={{
+                          textDecoration: "none",
+                          px: 1,
+                          mx: 1,
+                          fontSize: 17,
+                          color: "#F7CACA",
+                          backgroundColor: "#001122",
+                          "&.MuiButtonBase-root:hover": {
+                            bgcolor: "#001122",
+                          },
+                        }}
+                      >
+                        <img
+                          src="https://img.icons8.com/color/48/null/google-logo.png"
+                          style={{
+                            width: "1.85rem",
+                          }}
+                        />
+                      </Button>
+                      <Button
+                        variant="contained"
                         onClick={handleSubmit}
                         disableRipple
                         sx={{
@@ -163,6 +210,22 @@ const Login = ({ existingUser }) => {
                         }}
                       >
                         Sign Up
+                      </Button>
+                      <Button
+                        variant="contained"
+                        onClick={handleSendResetPasswordEmail}
+                        disableRipple
+                        sx={{
+                          px: 3,
+                          fontSize: 17,
+                          color: "#F7CACA",
+                          backgroundColor: "#001122",
+                          "&.MuiButtonBase-root:hover": {
+                            bgcolor: "#001122",
+                          },
+                        }}
+                      >
+                        Reset Password
                       </Button>
                     </Grid>
                   </Grid>
