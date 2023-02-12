@@ -36,10 +36,6 @@ const logoutUser = () => {
   return signOut(auth);
 };
 
-const passwordResetEmail = (email) => {
-  return sendPasswordResetEmail(auth, email);
-};
-
 const loginWithGoogle = () => {
   return signInWithPopup(auth, new GoogleAuthProvider());
 };
@@ -54,7 +50,9 @@ const FirebaseAuth = {
   registerUser,
   loginUser,
   logoutUser,
-  passwordResetEmail,
+  sendPasswordResetEmail: (email) => {
+    sendPasswordResetEmail(auth, email);
+  },
   loginWithGoogle,
   subscribeToAuthChanges,
 };

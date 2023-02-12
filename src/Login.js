@@ -4,6 +4,7 @@ import { Theme } from "./assets/theme";
 import rickroll from "./assets/rickroll.gif";
 import styled from "@mui/material/styles/styled";
 import FirebaseAuth from "./FirebaseAuth";
+import { Link } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   label: {
@@ -49,13 +50,13 @@ const Login = ({ existingUser }) => {
     FirebaseAuth.logoutUser();
   }
 
-  async function handleSendResetPasswordEmail(e) {
+  async function handleSendPasswordResetEmail(e) {
     if (!email) {
       alert("Please enter your email address.");
       return;
     }
     try {
-      await FirebaseAuth.sendResetPasswordEmail(email);
+      await FirebaseAuth.sendPasswordResetEmail(email);
       alert("Password reset email sent.");
     } catch (error) {
       alert(error.message);
@@ -82,7 +83,7 @@ const Login = ({ existingUser }) => {
                 backgroundColor: "white",
                 my: "50vh",
                 px: { mobile: 5, tablet: 10, laptop: 10 },
-                py: { mobile: 10, tablet: 5, laptop: 5 },
+                py: { mobile: 15, tablet: 7, laptop: 7 },
                 transform: "translateY(-50%)",
                 overflow: "hidden",
               }}
@@ -139,6 +140,21 @@ const Login = ({ existingUser }) => {
                 </>
               ) : (
                 <>
+                  <Link to="/">
+                    <div
+                      style={{
+                        width: "25px",
+                        position: "absolute",
+                        top: "30px",
+                        left: "30px",
+                      }}
+                    >
+                      <img
+                        src="https://img.icons8.com/ios-glyphs/30/null/long-arrow-left.png"
+                        alt=""
+                      />
+                    </div>
+                  </Link>
                   <h2 style={{ textAlign: "center" }}>Log In</h2>
                   <CssTextField
                     type="email"
@@ -164,9 +180,20 @@ const Login = ({ existingUser }) => {
                     fullWidth
                     sx={{ mt: 3 }}
                   />
+                  <p
+                    onClick={handleSendPasswordResetEmail}
+                    style={{
+                      textAlign: "right",
+                      fontSize: 15,
+                      marginTop: 10,
+                      marginRight: 10,
+                    }}
+                  >
+                    Forgot Password
+                  </p>
                   <Grid
                     container
-                    direction="row"
+                    display="flex"
                     justifyContent="flex-end"
                     alignContent="center"
                     columnSpacing={1}
@@ -203,6 +230,7 @@ const Login = ({ existingUser }) => {
                         disableRipple
                         sx={{
                           px: 3,
+                          marginRight: 1,
                           fontSize: 17,
                           color: "#F7CACA",
                           backgroundColor: "#001122",
@@ -212,22 +240,6 @@ const Login = ({ existingUser }) => {
                         }}
                       >
                         Sign Up
-                      </Button>
-                      <Button
-                        variant="contained"
-                        onClick={handleSendResetPasswordEmail}
-                        disableRipple
-                        sx={{
-                          px: 3,
-                          fontSize: 17,
-                          color: "#F7CACA",
-                          backgroundColor: "#001122",
-                          "&.MuiButtonBase-root:hover": {
-                            bgcolor: "#001122",
-                          },
-                        }}
-                      >
-                        Reset Password
                       </Button>
                     </Grid>
                   </Grid>
