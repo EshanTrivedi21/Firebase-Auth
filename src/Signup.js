@@ -29,7 +29,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-const LoginForm = ({ existingUser }) => {
+const Signup = ({ existingUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -78,7 +78,7 @@ const LoginForm = ({ existingUser }) => {
                     display: "flex",
                     justifyContent: "center",
                   }}>
-                    <img src={rickroll} style={{
+                    <img src={rickroll} alt="" style={{
                       width: "17.5rem",
                       height: "auto",
                       marginTop: "3rem",
@@ -176,4 +176,4 @@ const LoginForm = ({ existingUser }) => {
   );
 };
 
-export default LoginForm;
+export default Signup;
